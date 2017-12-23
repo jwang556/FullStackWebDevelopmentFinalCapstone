@@ -1,0 +1,217 @@
+<div>
+
+      <!--Table-->
+      <section style="width: 80%; margin: auto;">
+        <h1 class="content-header">Personal Timesheet Search</h1>
+      </section>
+<table class="table" style="width: 80%; margin: auto;">
+      <tr>
+          <th>Starting Monday</th>
+          <th><input ng-model="startingMonday" name="sortParam" type="date" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></th>
+          <th>Ending Friday</th>
+          <th>                                     
+            <input ng-model="endingFriday" name="sortParam" type="date" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;">
+          </th>
+     </tr>
+</table>
+
+      <section style="width: 80%; margin: auto;">
+        <span class="pull-right">
+          <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-success" ng-click="createTimesheet()"><i class="glyphicon glyphicon-plus"></i>Create</a>
+          <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger">Clear <i class="glyphicon glyphicon-remove"></i></a>
+          <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary" ng-click="searchPersonalTimesheet()">Search <i class="glyphicon glyphicon-search"></i></a>
+        </span>
+      </section>
+<br>
+<br>
+<section ng-show="timesheetShow" style="width: 80%; margin: auto;">
+<div class="row">
+  <section class="col-sm-4">
+    <label class="col-sm-4">First Name</label>
+    <label class="col-sm-6">{{timesheet.employee.firstName}}</label>
+  </section>
+  <section class="col-sm-4">
+    <label class="col-sm-4">Last Name</label>
+    <label class="col-sm-6">{{timesheet.employee.lastName}}</label>
+  </section>
+  <section class="col-sm-4">
+    <label class="col-sm-4">Gender</label>
+    <label class="col-sm-6">{{timesheet.employee.gender}}</label>
+  </section>
+</div>
+<div class="row">
+  <section class="col-sm-4">
+    <label class="col-sm-4">Manager</label>
+    <label class="col-sm-6">Value</label>
+  </section>
+  <section class="col-sm-4">
+    <label class="col-sm-4">Time Period</label>
+    <label class="col-sm-6">{{timePeriod}}</label>
+  </section>
+</div>
+<div class="row">
+  <section class="col-sm-4">
+    <label class="col-sm-4">Status</label>
+    <label class="col-sm-6">{{timesheet.status}}</label>
+  </section>
+</div>
+<div class="row">
+  <div class="container" style="margin-left:0px; margin-right: 0px;">
+    <section class="col-sm-1" style="width: 12%;">
+      <label></label>    
+    </section>
+    <section class="col-sm-1" style="width: 12%;">
+      <label>Monday</label>    
+    </section>
+    <section class="col-sm-1" style="width: 12%;">
+      <label>Tuesday</label>     
+    </section>
+    <section class="col-sm-1" style="width: 12%;">
+      <label>Wednesday</label>    
+    </section>
+    <section class="col-sm-1" style="width: 12%;">
+      <label>Thursday</label>    
+    </section>
+    <section class="col-sm-1" style="width: 12%;">
+      <label>Friday</label>    
+    </section>
+    <section class="col-sm-1" style="width: 12%;">
+      <label></label>    
+    </section>
+    <section class="col-sm-1" style="width: 12%;">
+      <label></label>    
+    </section>
+  </div>
+</div>
+<div class="row" ng-repeat="item in timesheet.tasks">
+  <div class="container" style="margin-left:0px; margin-right: 0px;">
+    <section class="col-sm-1" style="width: 12%;">
+      <label ng-bind="getTitle(item.task)"></label>    
+    </section>
+    <section class="col-sm-1" style="width: 12%;">
+      <input ng-model="item.mondayHours" name="sortParam" type="text" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;">   
+    </section>
+    <section class="col-sm-1" style="width: 12%;">
+      <input ng-model="item.tuesdayHours" name="sortParam" type="text" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;">     
+    </section>
+    <section class="col-sm-1" style="width: 12%;">
+      <input ng-model="item.wednesdayHours" name="sortParam" type="text" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;">    
+    </section>
+    <section class="col-sm-1" style="width: 12%;">
+      <input ng-model="item.thursdayHours" name="sortParam" type="text" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;">  
+    </section>
+    <section class="col-sm-1" style="width: 12%;">
+      <input ng-model="item.fridayHours" name="sortParam" type="text" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;">  
+    </section>
+    <section class="col-sm-1" style="width: 12%;" ng-click="removeTask(item.task)">
+      <label>Remove</label>    
+    </section>
+    <section class="col-sm-1" style="width: 12%;">
+      <label></label>    
+    </section>
+  </div>
+</div>
+<div class="row">
+  <div class="container" style="margin-left:0px; margin-right: 0px;">
+    <section class="col-sm-1" style="width: 12%;">
+      <label>Filled Hours</label>    
+    </section>
+    <section class="col-sm-1" style="width: 12%;">
+      <label ng-bind="getFilledHours(1)"></label>     
+    </section>
+    <section class="col-sm-1" style="width: 12%;">
+      <label ng-bind="getFilledHours(2)">Filled Hours</label>         
+    </section>
+    <section class="col-sm-1" style="width: 12%;">
+      <label ng-bind="getFilledHours(3)">Filled Hours</label>        
+    </section>
+    <section class="col-sm-1" style="width: 12%;">
+      <label ng-bind="getFilledHours(4)">Filled Hours</label>     
+    </section>
+    <section class="col-sm-1" style="width: 12%;">
+      <label ng-bind="getFilledHours(5)">Filled Hours</label>    
+    </section>
+    <section class="col-sm-1" style="width: 12%;">  
+    </section>
+    <section class="col-sm-1" style="width: 12%;">
+      <label></label>    
+    </section>
+  </div>
+</div>
+<div class="row">
+  <div class="container" style="margin-left:0px; margin-right: 0px;">
+    <section class="col-sm-2">
+      <label>Task</label> 
+    </section>
+    <section class="col-sm-6">
+      <select multiple class="form-control" ng-model="selectedTask">
+                  <option ng-value="">Select One</option>
+                  <option ng-repeat="item in taskList" ng-value="item._id"> {{item.title}}</option>
+                </select>
+              <!--</label>
+      <select multiple class="form-control" ng-model="selectedAttendee">
+        <option ng-value="">Select One</option>
+        <option ng-repeat="item in attendeeList" ng-value="item._id"> {{item.firstName + ' ' + item.lastName}}</option>
+      </select>-->
+    </section>
+    <section class="col-sm-2">
+      <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-success" ng-click="addTask()"><i class="glyphicon glyphicon-plus"></i>Add</a>
+    </section>
+  </div>
+</div>
+<div class="row">
+  <div class="container" style="margin-left:0px; margin-right: 0px;">
+    <section class="col-sm-2">
+      <label>Comment</label> 
+    </section>
+    <section class="col-sm-6">
+      <section ng-repeat="item in timesheet.comments">
+        <p style="margin-top: 10px" ng-bind="getCommentDate(item.date) + ' ' + getCommentEmployee(item.employee) + '-' + item.comment"></p>
+      </section>
+    </section>
+  </div>
+</div>
+<div class="row">
+  <div class="container" style="margin-left:0px; margin-right: 0px;">
+    <section class="col-sm-2">
+      
+    </section>
+    <section class="col-sm-6">
+      <textarea ng-model="comment" style="height: 85.2px; width: 100%;">
+
+      </textarea>
+    </section>
+    <section class="col-sm-2">
+      <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-success" ng-click="postComment()"><i class="glyphicon glyphicon-plus"></i>Post</a>
+    </section>
+  </div>
+</div>
+
+</section>
+<section style="width: 80%; margin: auto;">
+  <span class="pull-right">
+   <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-success" ng-click="submitTimesheet()"><i class="glyphicon glyphicon-plus"></i>Submit</a>
+  </span>
+</section>
+
+    <!--<a class="btn btn-primary btn-large" ng-click="open()">Launch demo modal</a>
+
+
+<div class="modal {{fade}} {{visible}}" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>-->
+</div>

@@ -1,0 +1,327 @@
+<div ng-controller="summaryController">
+
+<!--
+<div class="row">
+      <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
+           <A href="edit.html" >Edit Profile</A>
+
+        <A href="edit.html" >Logout</A>
+       <br>
+<p class=" text-info">May 05,2014,03:00 pm </p>
+      </div>
+
+<table class="table">
+   <tr>
+          <th>First Name:</th>
+          <th><input ng-model="sortBy" name="sortParam" type="text" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></th>
+          <th>Last Name:</th>
+          <th><input ng-model="sortBy" name="sortParam" type="text" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></th>
+     </tr>
+     <tr>
+          <th>Hire Date:</th>
+          <th><input ng-model="sortBy" name="sortParam" type="date" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></th>
+          <th>Date Of Birth:</th>
+          <th><input ng-model="sortBy" name="sortParam" type="date" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></th>
+     </tr>
+      <tr>
+          <th>Gender:</th>
+          <th>                                     
+            <input type="radio" id="male" name="gender" value="male" required>
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label>
+          </th>
+     </tr>
+
+</table>-->
+
+      <!--Table-->
+      <section style="width: 80%; margin: auto;">
+        <h1 class="content-header">Summary</h1>
+      </section>
+	  <table class="table" style="width: 80%; margin: auto;">
+      	  	<tr>
+          		<th>First Name</th>
+          		<th><input ng-model="sortBy" name="sortParam" type="text" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></th>
+          		<th>Last Name</th>
+          		<th>                                     
+			  		<input ng-model="sortBy" name="sortParam" type="text" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;">
+          		</th>
+     		</tr>
+     		<tr>
+          		<th>Starting Date</th>
+          		<th><input ng-model="sortBy" name="sortParam" type="date" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></th>
+          		<th>Ending Date</th>
+          		<th>                                     
+            		<input ng-model="sortBy" name="sortParam" type="date" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;">
+          		</th>
+     		</tr>
+     		<tr>
+     			<th>Task</th>
+     			<th><input ng-model="sortBy" name="sortParam" type="date" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></th>
+     			<th>Group By</th>
+     			<th>
+     				<select class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;">
+                  		<option>Select One</option>
+                  		<option>Daily</option>
+                  		<option>Weekly</option>
+                  		<option>Monthly</option>
+                  		<option>Yearly</option>
+                	</select>
+     			</th>
+     		</tr>
+		</table>
+
+      	<section style="width: 80%; margin: auto;">
+                        <span class="pull-right">
+                            <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger">Export <i class="glyphicon glyphicon-remove"></i></a>
+                            <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary">Search <i class="glyphicon glyphicon-search"></i></a>
+                        </span>
+      	</section>
+		<br>
+		<br>
+		<div class="row" style="width: 80%; margin: auto; border-bottom:1px solid grey; padding-bottom: 5px;">
+  			<div class="col-md-2"><label>#</label></div>
+  			<div class="col-md-2"><label>Date</label></div>
+  			<div class="col-md-2"><label>Day</label></div>
+  			<div class="col-md-2"><label>Recorded Hours</label></div>
+  			<div class="col-md-2"><label>Filled Hours</label></div>
+  			<div class="col-md-2"><label>Unfilled Hours</label></div>
+		</div>
+		<div class="row" style="width: 80%; margin: auto; padding-top: 5px; border-bottom:1px solid grey; padding-bottom: 5px;">
+  			<div class="col-md-2"><section style="margin-left: 18px;">1</section></div>
+  			<div class="col-md-2"><section style="margin-left: 18px;">10/30/2017</section></div>
+  			<div class="col-md-2"><section style="margin-left: 18px;">Monday</section></div>
+  			<div class="col-md-2"><section style="margin-left: 18px;">8</section></div>
+  			<div class="col-md-2"><section style="margin-left: 18px;">8</section></div>
+  			<div class="col-md-2"><section style="margin-left: 18px;">0</section></div>
+		</div>
+		<div class="row" style="width: 80%; margin: auto; padding-top: 5px; border-bottom:1px solid grey; padding-bottom: 5px;">
+  			<div class="col-md-2"><label style="margin-left: 36px;"># Shift Number</label></div>
+  			<div class="col-md-5"><label style="margin-left: 36px;">Start Time</label></div>
+  			<div class="col-md-5"><label style="margin-left: 36px;">End Time</label></div>
+		</div>
+		<div class="row" style="width: 80%; margin: auto; padding-top: 5px; border-bottom:1px solid grey; padding-bottom: 5px;">
+  			<div class="col-md-2"><section style="margin-left: 36px;">1</section></div>
+  			<div class="col-md-5"><section style="margin-left: 36px;">8:30</section></div>
+  			<div class="col-md-5"><section style="margin-left: 36px;">16:30</section></div>
+		</div>
+		<div class="row" style="width: 80%; margin: auto; padding-top: 5px; border-bottom:1px solid grey; padding-bottom: 5px;">
+  			<div class="col-md-2"><label style="margin-left: 36px;"># Task Number</label></div>
+  			<div class="col-md-5"><label style="margin-left: 36px;">Task Name</label></div>
+  			<div class="col-md-5"><label style="margin-left: 36px;">Recorded Hours</label></div>
+		</div>
+		<div class="row" style="width: 80%; margin: auto; padding-top: 5px; border-bottom:1px solid grey; padding-bottom: 5px;">
+  			<div class="col-md-2"><section style="margin-left: 36px;">1</section></div>
+  			<div class="col-md-5"><section style="margin-left: 36px;">Dish Washing</section></div>
+  			<div class="col-md-5"><section style="margin-left: 36px;">5 Hours</section></div>
+		</div>
+		<div class="row" style="width: 80%; margin: auto; padding-top: 5px; border-bottom:1px solid grey; padding-bottom: 5px;">
+  			<div class="col-md-2"><section style="margin-left: 36px;">2</section></div>
+  			<div class="col-md-5"><section style="margin-left: 36px;">Kitchen Cleaning</section></div>
+  			<div class="col-md-5"><section style="margin-left: 36px;">3 Hours</section></div>
+		</div>
+<!--
+<table class="table" style="width: 80%; margin: auto;">
+    <thead class="mdb-color darken-3">
+        <tr class="text-white">
+        	<th>#</th>
+            <th>Date</th>
+            <th>Day</th>
+            <th>Recorded Hours</th>
+            <th>Filled Hours</th>
+            <th>Unfilled Hours</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-click="newTask('Edit Task')">
+            <th scope="row">1</th>
+            <td>10/30/2017</td>
+            <td>Monday</td>
+            <td>8</td>
+            <td>8</td>
+            <td>0</td>
+        </tr>
+        <tr>
+		    <div class="row">
+		    	<label class="col-sm-4">Label</label>
+		    </div>
+        </tr>
+    </tbody>
+</table>
+-->
+
+    <div class="modal {{fade}} {{visible}}" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">{{modalTitle}}</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+              <label class="col-sm-4">Name</label>
+              <section class="col-sm-6">
+                <input ng-model="sortBy" name="sortParam" type="text" class="form-control col-sm-6" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;">
+              </section>
+            </div>
+            <div class="row">
+              <label class="col-sm-4">Manager</label>
+              <section class="col-sm-6">
+                <select class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;">
+                  <option>Select One</option>
+                </select>
+              </section>
+            </div>
+             <div class="row">
+              <label class="col-sm-4">Starting Date</label>
+              <section class="col-sm-6">
+                <input ng-model="sortBy" name="sortParam" type="date" class="form-control col-sm-6" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;">
+              </section>
+            </div>
+            <div class="row">
+              <label class="col-sm-4">Ending Date</label>
+              <section class="col-sm-6">
+                <input ng-model="sortBy" name="sortParam" type="date" class="form-control col-sm-6" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;">
+              </section>
+            </div>
+            <div class="row">
+              <label class="col-sm-4">Assignee List</label>
+              <section class="col-sm-6">
+                <select multiple class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;">
+                  <option>Select One</option>
+                </select>
+              </section>
+            </div>
+            <div class="row">
+              <label class="col-sm-4">Selected Assignee</label>
+              <section class="col-sm-6">
+                <div class="row">
+                  <table class="table" style="width: 80%; margin: auto;">
+                    <thead class="mdb-color darken-3">
+                      <tr class="text-white">
+                        <th>Name</th>
+                        <th></th>                       
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Mark Otto</td>
+                        <td>Delete</td>
+                      </tr>
+                      <tr>
+                        <td>Mark Otto</td>
+                        <td>Delete</td>
+                      </tr>
+                      <tr>
+                        <td>Mark Otto</td>
+                        <td>Delete</td>
+                      </tr>
+                      <tr>
+                        <td>Mark Otto</td>
+                        <td>Delete</td>
+                      </tr>
+                      <tr>
+                        <td>Mark Otto</td>
+                        <td>Delete</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+            <!--<div class="row">  
+              <table class="table" style="width: 80%; margin: auto;">
+                <thead class="mdb-color darken-3">
+                <tr class="text-white">
+                  <th>Task</th>
+                  <th>Monday</th>
+                  <th>Tuesday</th>
+                  <th>Wednesday</th>
+                  <th>Thrusday</th>
+                  <th>Friday</th>
+                  <th>Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <tr ng-click="open()">
+                    <td>Delivery</td>
+                    <td><input name="sortParam" type="text" class="form-control" value="5.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="3.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="5.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="5.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="5.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="5.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                  </tr>
+                  <tr ng-click="open()">
+                    <td>Dish Washing</td>
+                    <td><input name="sortParam" type="text" class="form-control" value="2.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="2.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="0.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="2.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="0.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="2.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                  </tr>
+                  <tr ng-click="open()">
+                    <td>Task Hours</td>
+                    <td><input name="sortParam" type="text" class="form-control" value="7.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="5.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="5.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="7.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="5.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="7.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                  </tr>
+                  <tr ng-click="open()">
+                    <td>Logged Hours</td>
+                    <td><input name="sortParam" type="text" class="form-control" value="7.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="5.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="5.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="7.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="5.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="7.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                  </tr>
+                  <tr ng-click="open()">
+                    <td>Unfilled Hours</td>
+                    <td><input name="sortParam" type="text" class="form-control" value="0.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="0.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="0.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="0.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="0.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="0.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>-->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeNewTask()">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <!--<a class="btn btn-primary btn-large" ng-click="open()">Launch demo modal</a>
+
+
+<div class="modal {{fade}} {{visible}}" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>-->
+</div>
+
+
+</div>

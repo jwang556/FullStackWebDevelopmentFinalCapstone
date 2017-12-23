@@ -1,0 +1,47 @@
+
+    
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-controller="NavbarController">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                 <li class="dropdown">
+                    <a href="" class="dropdown-toggle" role="button" ui-sref="app.punchIn">Punch In</a>
+                 </li>
+                 <li class="dropdown">
+                    <a href="" class="dropdown-toggle" role="button" ng-click="showEmployeeDropdown = !showEmployeeDropdown" ng-blur="closeEmployeeDropdown()">Employee Info <span class="caret"></span></a>
+                    <ul class="dropdown-menu" style="display: block" ng-show="showEmployeeDropdown" ng-mouseover="overEmployeeDropdown()" ng-mouseleave="leaveEmployeeDropdown()">
+                      <li><a ui-sref="app.newEmployee" ng-click="showEmployeeDropdown = false">New</a></li>
+                      <li><a ui-sref="app.editEmployee" ng-click="showEmployeeDropdown = false">Edit</a></li>
+                    </ul>
+                 </li>
+                 <li class="dropdown">
+                    <a href="" class="dropdown-toggle" role="button" ng-click="showTimeinfoDropdown = !showTimeinfoDropdown" ng-blur="closeTimeinfoDropdown()">Time Info <span class="caret"></span></a>
+                    <ul class="dropdown-menu" style="display: block" ng-show="showTimeinfoDropdown" ng-mouseover="overTimeinfoDropdown()" ng-mouseleave="leaveTimeinfoDropdown()">
+                      <li><a ui-sref="app.personalTimesheet" ng-click="showTimeinfoDropdown = false">Personal Timesheet</a></li>
+                      <li><a ui-sref="app.timesheet" ng-click="showTimeinfoDropdown = false">Timesheet</a></li>
+                      <li><a ui-sref="app.managerTimesheet" ng-click="showTimeinfoDropdown = false">Manager Timesheet</a></li>
+                      <li><a ui-sref="app.newTask" ng-click="showTimeinfoDropdown = false">New Task</a></li>
+                      <li><a ui-sref="app.editTask" ng-click="showTimeinfoDropdown = false">Edit Task</a></li>
+                    </ul>
+                 </li>
+                 <li class="dropdown">
+                    <a href="" class="dropdown-toggle" role="button" ng-click="showMeetingsDropdown = !showMeetingsDropdown" ng-blur="closeMeetingsDropdown()">Meetings <span class="caret"></span></a>
+                    <ul class="dropdown-menu" style="display: block" ng-show="showMeetingsDropdown" ng-mouseover="overMeetingsDropdown()" ng-mouseleave="leaveMeetingsDropdown()">
+                      <li><a ui-sref="app.newMeeting" ng-click="showMeetingsDropdown = false">New</a></li>
+                      <li><a ui-sref="app.existingMeeting" ng-click="showMeetingsDropdown = false">Existing</a></li>
+                      <li><a ui-sref="app.upcomingMeeting" ng-click="showMeetingsDropdown = false">Upcoming</a></li>
+                    </ul>
+                 </li>
+            </ul>
+        </div>
+    </div>
+</nav>

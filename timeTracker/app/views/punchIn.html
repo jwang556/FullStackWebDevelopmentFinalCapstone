@@ -1,0 +1,25 @@
+<div>
+  <!--<div class="row row-content" ng-controller="MenuController">-->
+  <!--<div class="row row-content">
+  	<div class="span6" style="float: none; margin: 0 auto;">
+  	<div class="punch-in-button" style="margin: auto;">
+  		Button
+ 	</div>
+ 	</div>  
+  </div>-->
+
+  <section style="width: 80%; margin: auto;">
+        <h1 style="clear: left;
+    text-align: center;">Current Time Is 11/5/2017 10:28</h1>
+      </section>
+
+  <div style="position: absolute;
+    left: 50%;
+    margin-right: -50%;
+    margin-top: 30px;
+    transform: translate(-50%, -50%);">
+   <div ng-class="getPunchClass()" ng-disabled="disabled" style="margin: auto;" ng-click="punch()">
+  		<section>{{punchText}}</section>
+ 	  </div>
+  </div>
+</div>

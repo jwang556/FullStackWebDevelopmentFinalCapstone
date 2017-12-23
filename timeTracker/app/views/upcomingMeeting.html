@@ -1,0 +1,124 @@
+<div ng-controller="upcomingMeetingController">
+      <section style="width: 80%; margin: auto;">
+        <h1 class="content-header">Upcoming Meeting</h1>
+      </section>
+      <table class="table" style="width: 80%; margin: auto;">
+        <thead class="mdb-color darken-3">
+          <tr class="text-white">
+            <th>#</th>
+            <th>Title</th>
+            <th>Host</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Duration</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in meetingResult">
+            <th scope="row" ng-click="open(item)">{{$index + 1}}</th>
+            <td ng-click="open(item)">{{item.title}}</td>
+            <td ng-click="open(item)">{{item.host.firstName + ' ' + item.host.lastName}}</td>
+            <td ng-click="open(item)">{{item.startTime}}</td>
+            <td ng-click="open(item)">{{item.endTime}}</td>
+            <td ng-click="open(item)">{{item.duration.hours + ' Hours ' + item.duration.minutes + ' Minutes'}}</td>
+            <td ng-click="open(item)"></td>
+        </tr>
+        </tbody>
+      </table>
+
+      <div class="modal {{fade}} {{visible}}" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Meeting Info</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <label class="col-sm-4">Title</label>
+              <label class="col-sm-6">{{meetingModal.title}}</label>
+            </div>
+            <div class="row">
+              <label class="col-sm-4">Host</label>
+              <label class="col-sm-6">
+                {{host}}
+              </label>
+            </div>
+            <div class="row">
+              <label class="col-sm-4">Start Time</label>
+              <label class="col-sm-6">
+                {{meetingModal.startTime}}
+              </label>
+            </div>
+            <div class="row">
+              <label class="col-sm-4">End Time</label>
+              <label class="col-sm-6">
+                {{meetingModal.endTime}}
+              </label>
+            </div>
+            <div class="row">
+              <label class="col-sm-4">Duration</label>
+              <label class="col-sm-6">{{meetingModal.duration.hours + ' Hours ' + meetingModal.duration.minutes + ' Minutes '}}</label>
+            </div>
+            <div class="row">
+              <label class="col-sm-4">Attendee List</label>
+               <label class="col-sm-6">
+                  <table class="table" style="width: 100%; margin: auto; max-height: 200px">
+                    <thead class="mdb-color darken-3">
+                      <tr class="text-white">
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Remove</th>                       
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="item in getAttendeeListDisplay()">
+                        <td>{{item.name}}</td>
+                        <td>{{item.status}}</td>
+                        <td ng-click="removeAttendee(item._id)">Remove</td>
+                      </tr>
+                        <!--<tr>
+                          <td>Mark Otto</td>
+                          <td>Undecided</td>
+                          <td>Remove</td>
+                        </tr>
+                        <tr>
+                          <td>Mark Otto</td>
+                          <td>Undecided</td>
+                          <td>Remove</td>
+                        </tr>
+                        <tr>
+                          <td>Mark Otto</td>
+                          <td>Undecided</td>
+                          <td>Remove</td>
+                        </tr>
+                        <tr>
+                          <td>Mark Otto</td>
+                          <td>Undecided</td>
+                          <td>Remove</td>
+                        </tr>-->
+                    </tbody>
+                  </table>
+                </label>
+            </div>
+             <div class="row">
+              <label class="col-sm-4">Status</label>
+              <label class="col-sm-6">
+                 <select ng-model="status" class="form-control">
+                  <option>Select One</option>
+                  <option>Accept</option>
+                  <option>Decline</option>
+                </select>
+              </label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Close</button>
+            <button type="button" class="btn btn-primary" ng-click="saveMeeting()">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

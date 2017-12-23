@@ -1,0 +1,273 @@
+<div>
+
+<!--
+<div class="row">
+      <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
+           <A href="edit.html" >Edit Profile</A>
+
+        <A href="edit.html" >Logout</A>
+       <br>
+<p class=" text-info">May 05,2014,03:00 pm </p>
+      </div>
+
+<table class="table">
+   <tr>
+          <th>First Name:</th>
+          <th><input ng-model="sortBy" name="sortParam" type="text" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></th>
+          <th>Last Name:</th>
+          <th><input ng-model="sortBy" name="sortParam" type="text" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></th>
+     </tr>
+     <tr>
+          <th>Hire Date:</th>
+          <th><input ng-model="sortBy" name="sortParam" type="date" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></th>
+          <th>Date Of Birth:</th>
+          <th><input ng-model="sortBy" name="sortParam" type="date" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></th>
+     </tr>
+      <tr>
+          <th>Gender:</th>
+          <th>                                     
+            <input type="radio" id="male" name="gender" value="male" required>
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label>
+          </th>
+     </tr>
+
+</table>-->
+
+      <!--Table-->
+      <section style="width: 80%; margin: auto;">
+        <h1 class="content-header">Task Search</h1>
+      </section>
+<table class="table" style="width: 80%; margin: auto;">
+      <tr>
+          <th>Title</th>
+          <th><input ng-model="searchTask.title" name="sortParam" type="text" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></th>
+          <th>Leader</th>
+          <th>       
+            <select class="form-control" ng-model="searchTask.leader">
+              <option ng-value="">Select One</option>
+              <option ng-repeat="item in leaderList" ng-value="item._id">{{item.firstName + ' ' + item.lastName}}</option>
+            </select>                              
+            <!--<select class="form-control" ng-model="searchTask.leader" ng-options="item.firstName + ' ' + item.lastName for item in leaderList" ng-value="item._id" ng-selected="host == item._id">
+                  <!--<option ng-value="'Select One'" ng-selected="host == item._id">Select One</option>-->
+                  <!--<option ng-repeat="item in hostList" ng-value="item._id" ng-selected="host == item._id">{{item.firstName + ' ' + item.lastName}}</option>-->
+            <!--</select>-->
+          </th>
+     </tr>
+     <tr>
+          <th>Starting Date</th>
+          <th><input ng-model="searchTask.startDate" name="sortParam" type="date" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></th>
+          <th>Ending Date</th>
+          <th>                                     
+            <input ng-model="searchTask.endDate" name="sortParam" type="date" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;">
+          </th>
+     </tr>
+</table>
+
+      <section style="width: 80%; margin: auto;">
+                        <span class="pull-right">
+                            <a type="button" class="btn btn-sm btn-danger">Clear <i class="glyphicon glyphicon-remove"></i></a>
+                            <a type="button" class="btn btn-sm btn-primary" ng-click="taskSearch()">Search <i class="glyphicon glyphicon-search"></i></a>
+                        </span>
+      </section>
+<br>
+<br>
+<table class="table" style="width: 80%; margin: auto;">
+
+    <!--Table head-->
+    <thead class="mdb-color darken-3">
+        <tr class="text-white">
+            <th>#</th>
+            <th>Name</th>
+            <th>Manager</th>
+            <th>Starting Date</th>
+            <th>Ending Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <!--Table head-->
+
+    <!--Table body-->
+    <tbody>
+        <tr ng-click="newTask('Edit Task')" ng-repeat="item in taskResult">
+            <th scope="row" ng-click="open(item)">{{$index + 1}}</th>
+            <td ng-click="open(item)">{{item.title}}</td>
+            <td ng-click="open(item)">{{item.leader.firstName + ' ' + item.leader.lastName}}</td>
+            <td ng-click="open(item)">{{item.startDate}}</td>
+            <td ng-click="open(item)">{{item.endDate}}</td>
+            <td ng-click="removeTask(item._id)">Delete</td>
+        </tr>
+    </tbody>
+</table>
+
+<!--Table body-->
+    <div class="modal {{fade}} {{visible}}" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">{{modalTitle}}</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+              <label class="col-sm-4">Title</label>
+              <label class="col-sm-6">{{taskModal.title}}</label>
+            </div>
+            <div class="row">
+              <label class="col-sm-4">Leader</label>
+              <section class="col-sm-6">
+                <!--<select ng-model="leader" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;">
+                  <option ng-value="">Select One</option>
+                  <option ng-repeat="item in leaderList" ng-value="item._id">{{item.firstName + ' ' + item.lastName}}</option>
+                </select>-->
+                <select class="form-control" style="margin-bottom: 10px;" ng-model="leader" ng-options="item.firstName + ' ' + item.lastName for item in leaderList" ng-value="item._id" ng-selected="leader == item._id">
+                  <!--<option ng-value="'Select One'" ng-selected="host == item._id">Select One</option>-->
+                  <!--<option ng-repeat="item in hostList" ng-value="item._id" ng-selected="host == item._id">{{item.firstName + ' ' + item.lastName}}</option>-->
+                </select>
+              </section>
+            </div>
+             <div class="row">
+              <label class="col-sm-4">Starting Date</label>
+              <section class="col-sm-6">
+                <input ng-model="startDate" name="sortParam" type="date" class="form-control col-sm-6" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;">
+              </section>
+            </div>
+            <div class="row">
+              <label class="col-sm-4">Ending Date</label>
+              <section class="col-sm-6">
+                <input ng-model="endDate" name="sortParam" type="date" class="form-control col-sm-6" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;">
+              </section>
+            </div>
+            <div class="row">
+              <label class="col-sm-4">Assignee</label>
+              <section class="col-sm-6">
+                <a data-original-title="Edit this user" data-toggle="tooltip" type="button" style="margin-bottom: 10px;" class="btn btn-sm btn-success" ng-click="addAssignee()"><i class="glyphicon glyphicon-plus">Add</i></a>   
+                <select multiple ng-mdel="selectedAssignee" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;">
+                  <option>Select One</option>
+                  <option ng-repeat="item in assigneeList" ng-value="item._id" > {{item.firstName + ' ' + item.lastName}}</option>
+                </select>
+              </section>
+            </div>
+            <div class="row">
+              <label class="col-sm-4">Assignee List</label>
+              <section class="col-sm-6">
+                <div class="row">
+                  <table class="table" style="width: 100%; margin: auto; max-height: 200px; margin-bottom: 10px;">
+                    <thead class="mdb-color darken-3">
+                      <tr class="text-white">
+                        <th>Name</th>
+                        <th>Remove</th>                       
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="item in getAssigneeListDisplay()">
+                        <td>{{item.name}}</td>
+                        <td ng-click="removeAssignee(item._id)">Remove</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+            <div class="row">
+              <label class="col-sm-4">Notes</label>
+              <section class="col-sm-6">
+                <textarea ng-model="editTask.notes" name="sortParam" type="text" class="form-control col-sm-6" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></textarea>
+              </section>
+            </div>
+            <!--<div class="row">  
+              <table class="table" style="width: 80%; margin: auto;">
+                <thead class="mdb-color darken-3">
+                <tr class="text-white">
+                  <th>Task</th>
+                  <th>Monday</th>
+                  <th>Tuesday</th>
+                  <th>Wednesday</th>
+                  <th>Thrusday</th>
+                  <th>Friday</th>
+                  <th>Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <tr ng-click="open()">
+                    <td>Delivery</td>
+                    <td><input name="sortParam" type="text" class="form-control" value="5.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="3.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="5.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="5.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="5.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="5.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                  </tr>
+                  <tr ng-click="open()">
+                    <td>Dish Washing</td>
+                    <td><input name="sortParam" type="text" class="form-control" value="2.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="2.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="0.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="2.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="0.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="2.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                  </tr>
+                  <tr ng-click="open()">
+                    <td>Task Hours</td>
+                    <td><input name="sortParam" type="text" class="form-control" value="7.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="5.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="5.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="7.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="5.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="7.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                  </tr>
+                  <tr ng-click="open()">
+                    <td>Logged Hours</td>
+                    <td><input name="sortParam" type="text" class="form-control" value="7.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="5.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="5.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="7.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="5.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="7.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                  </tr>
+                  <tr ng-click="open()">
+                    <td>Unfilled Hours</td>
+                    <td><input name="sortParam" type="text" class="form-control" value="0.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="0.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="0.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="0.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="0.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                    <td><input name="sortParam" type="text" class="form-control" value="0.0" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>-->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <!--<a class="btn btn-primary btn-large" ng-click="open()">Launch demo modal</a>
+
+
+<div class="modal {{fade}} {{visible}}" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>-->
+</div>
+
+
+</div>

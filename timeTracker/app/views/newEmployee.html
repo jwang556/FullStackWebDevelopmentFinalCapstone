@@ -1,0 +1,88 @@
+<div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >  
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Create New Employee</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class=" col-md-12 col-lg-12 "> 
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>First Name:</td>
+                        <td><input ng-model="newEmployee.firstName" name="sortParam" type="text" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></td>
+                      </tr>
+                       <tr>
+                        <td>Last Name:</td>
+                        <td><input ng-model="newEmployee.lastName" name="sortParam" type="text" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></td>
+                      </tr>
+                      <tr>
+                        <td>Username:</td>
+                        <td><input type="text" id="username" name="username" ng-model="newEmployee.username" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></td>
+                      </tr>
+                      <tr>
+                        <td>Password:</td>
+                        <td><input type="password" id="password" name="password" ng-model="newEmployee.password" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></td>
+                      </tr>
+                      <tr>
+                        <td>Hire date:</td>
+                        <td><input type="date" id="hiredate" name="hiredate" ng-model="newEmployee.hireDate" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></td>
+                      </tr>
+                      <tr>
+                        <td>Date of Birth</td>
+                        <td><input type="date" id="birthdate" name="birthdate" ng-model="newEmployee.dateOfBirth" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></td>
+                      </tr>                   
+                      <tr>
+                        <td>Gender</td>
+                        <td> 
+                          <input type="radio" id="male" name="gender" value="male" ng-model="newEmployee.gender" required>
+                          <label for="male">Male</label>
+                          <input type="radio" id="female" name="gender" value="female">
+                          <label for="female">Female</label>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Home Address</td>
+                        <td><input name="homeAddress" type="text" ng-model="newEmployee.homeAddress" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></td>
+                      </tr>
+                      <tr>
+                        <td>Email</td>
+                        <td><input name="email" type="text" ng-model="newEmployee.email" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></td>
+                      </tr>
+                      <tr>
+                        <td>Manager</td>
+                        <td>
+                          <select class="form-control" ng-model="newEmployee.manager">
+                            <option ng-value="">Select One</option>
+                            <option ng-repeat="item in employeeList" ng-value="item._id">{{item.firstName + ' ' + item.lastName}}</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Phone Number (Landline)</td>
+                        <td><input ng-model="newEmployee.phoneNumberLandline" name="phoneLandline" type="text" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></td>
+                        <br>
+                      </tr>
+                       <tr>
+                        <td>Phone Number (Cell)</td>
+                        <td><input ng-model="newEmployee.phoneNumberCell" name="phoneLandline" type="text" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></td>
+                        <br>
+                      </tr>                     
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+                 <div class="panel-footer" style="height: 50px;">
+                        <span class="pull-right">
+                            <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i>Reset</a>
+                            <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-success" ng-click="createEmployee()"><i class="glyphicon glyphicon-plus"></i>Create</a>
+                        </span>
+                    </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>

@@ -1,0 +1,124 @@
+<div class="container" ng-controller="newMeetingController">
+      <div class="row">
+      <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
+      </div>
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+   
+   
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Create New Meeting</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+                  <dl>
+                    <dt>DEPARTMENT:</dt>
+                    <dd>Administrator</dd>
+                    <dt>HIRE DATE</dt>
+                    <dd>11/12/2013</dd>
+                    <dt>DATE OF BIRTH</dt>
+                       <dd>11/12/2013</dd>
+                    <dt>GENDER</dt>
+                    <dd>Male</dd>
+                  </dl>
+                </div>-->
+                <div class=" col-md-12 col-lg-12 "> 
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>Title</td>
+                        <td><input ng-model="newMeeting.title" name="sortParam" type="text" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></td>
+                      </tr>
+                       <tr>
+                        <td>Host</td>
+                        <td> 
+                          <select class="form-control" ng-model="newMeeting.host">
+                            <option ng-value="">Select One</option>
+                            <option ng-repeat="item in hostList" ng-value="item._id">{{item.firstName + ' ' + item.lastName}}</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Start Time</td>
+                        <td><input type="datetime-local" id="hiredate" name="hiredate" class="form-control" ng-model="startTime" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></td>
+                      </tr>
+                      <tr>
+                        <td>End Time</td>
+                        <td><input type="datetime-local" id="birthdate" name="birthdate" class="form-control" ng-model="endTime" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%;"></td>
+                      </tr>
+                      <tr>
+                        <td>Duration {{timeDiff}}</td>
+                        <td>
+                          <input type="number" id="hiredate" name="hiredate" class="form-control" ng-model="newMeeting.duration.hours" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 80px; display: inline-block;"> Hours
+                          <input type="number" id="hiredate" name="hiredate" class="form-control" ng-model="newMeeting.duration.minutes" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 80px; display: inline-block;"> Minutes
+                          <!--{{newMeeting.duration.hour}} Hours {{newMeeting.duration.minute}} Minutes-->
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Attendee</td>
+                        <td>
+                            <a data-original-title="Edit this user" data-toggle="tooltip" type="button" style="margin-bottom: 10px;" class="btn btn-sm btn-success" ng-click="addAttendee()"><i class="glyphicon glyphicon-plus">Add</i></a>
+                            
+                            <select multiple class="form-control" ng-model="selectedAttendee">
+                              <option ng-value="">Select One</option>
+                              <option ng-repeat="item in attendeeList" ng-value="item._id"> {{item.firstName + ' ' + item.lastName}}</option>
+                            </select>
+                            <!--{{selectedAttendee.item}}
+                            <select multiple ng-init="selectedAttendee.item = attendeeList[0]" class="form-control" ng-options="name as item.firstName + ' ' + item.lastName for item in attendeeList" 
+                                ng-model="selectedAttendee.item" ng-change="onSelected()">
+                                <option value="">Select User</option>  
+
+                                </select>-->
+
+                            <!--<select multiple class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 10px; width: 100%;">
+                                <option>Select One</option>
+                            </select>-->
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Attendee List</td>
+                        <td>
+                            <div class="row">
+                              <table class="table" style="width: 100%; margin: auto; max-height: 200px">
+                                <thead class="mdb-color darken-3">
+                                  <tr class="text-white">
+                                    <th>Name</th>
+                                    <th>Status</th>
+                                    <th>Remove</th>                       
+                                  </tr>
+                                </thead>
+                                <tbody>
+
+                                  <tr ng-repeat="item in getAttendeeListDisplay()">
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.status}}</td>
+                                    <td ng-click="removeAttendee(item._id)">Remove</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Notes</td>
+                          <td>
+                            <textarea ng-model="newMeeting.notes" name="phoneLandline" class="form-control" style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; width: 100%; height: 200px;"></textarea>
+                          </td>
+                        </tr>                     
+                      </tbody>
+                    </table>
+                </div>
+              </div>
+            </div>
+                <div class="panel-footer" style="height: 50px;">
+                        <span class="pull-right">
+                            <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i>Reset</a>
+                            <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-success" ng-click="createMeeting()"><i class="glyphicon glyphicon-plus"></i>Create</a>
+                        </span>
+                    </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
